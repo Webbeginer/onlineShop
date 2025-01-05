@@ -1,16 +1,23 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useState, useEffect, Suspense } from "react";
 
 const LoginPage = () => {
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
-    const searchParams = useSearchParams();
     const [error, setError] = useState("");
+    const [callbackUrl, setCallbackUrl] = useState("/");
+    const router = useRouter();
     const { data: session, status } = useSession();
-    const callbackUrl = searchParams?.get("callbackUrl") || "/";
+
+    useEffect(() => {
+        const searchParams = new URLSearchParams(window.location.search);
+        const urlCallback = searchParams.get("callbackUrl");
+        if (urlCallback) {
+            setCallbackUrl(urlCallback);
+        }
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -40,7 +47,7 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="w-full h-screen flex justify-center items-cente  bg-[url('/bg-auth.jpg')] bg-cover">
+        <div className="w-full h-screen flex justify-center items-center bg-[url('/bg-auth.jpg')] bg-cover">
             <div className="w-full h-[450px] mt-[100px] max-w-sm p-4 backdrop-sepia-0 bg-white/30 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 flex flex-col">
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">Sign In To Your Account</h1>
                 <p className="text-1xl text-red-500">{error !== "" && error}</p>
