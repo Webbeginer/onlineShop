@@ -1,4 +1,5 @@
 import { getData } from "@/services/product/getData";
+import Image from "next/image";
 
 
 const DetailProductPage= async (props: any)=>{
@@ -14,9 +15,9 @@ const DetailProductPage= async (props: any)=>{
             >
                 <div className="w-[370px] h-[300px] p mx-auto mt-4 rounded-lg group overflow-hidden">
 
-                <img
+                <Image
                     className="p-8  object-cover group-hover:scale-110  transition duration-500 ease-in-out group-hover:rotate-3 object-cover h-full w-full"
-                    src={product.data?.image}
+                    src={product.data?.image} width={200} height={200}
                     alt="product image"
                 />
                 </div>

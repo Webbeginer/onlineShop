@@ -1,5 +1,6 @@
 import ModalLayout from "@/components/Modal"
 import { getData } from "@/services/product/getData";
+import Image from "next/image";
 
 const Modal = async (props: any) => {
     const { params } =  props;
@@ -9,9 +10,9 @@ const Modal = async (props: any) => {
         <ModalLayout>
           
                 <div className="h-[300px] w-[300px] overflow-hidden group mx-auto mt-4 rounded-lg ">
-                <img
+                <Image
                     className=" object-cover group-hover:scale-110  transition duration-500 ease-in-out object-cover h-full w-full"
-                    src={product.data.image}
+                    src={product.data.image} width={200} height={200}
                     alt="product image"
                 />
                 </div>

@@ -1,6 +1,6 @@
 import { getData } from "@/services/product/getData";
 import Link from "next/link";
-import DetailProductPage from "./detail/[id]/page";
+import Image from "next/image";
 
 
 type DetailProductProps={
@@ -23,9 +23,9 @@ const ProductPage= async ( props:DetailProductProps)=>{
                     key={item.id}
                 >
                     <Link href={`/product/detail/${item.id}`}>
-                    <img
+                    <Image
                         className="p-8 rounded-t-lg object-cover h-64 w-full"
-                        src={item.image}
+                        src={item.image} width={200} height={200}
                         alt="product image"
                     />
                     </Link>
