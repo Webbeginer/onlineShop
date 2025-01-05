@@ -3,12 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 
-type DetailProductProps={
-    params:{slug:string[]}
-    
-}
+
  
-const ProductPage= async ( props:DetailProductProps)=>{
+const ProductPage= async ( )=>{
 
     const products= await getData( `${process.env.NEXT_PUBLIC_API}/api/product`);
  
