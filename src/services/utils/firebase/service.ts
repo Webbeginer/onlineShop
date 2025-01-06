@@ -46,23 +46,23 @@ export async function login(data: {email: string}) {
 };
 
 export async function loginWithGoogle(data: any) {
-    console.log("Data received for Google login:", data);
+  
 
     const q = query(collection(firestore, "users"), where("email", "==", data.email));
     const snapshot = await getDocs(q);
     const user: any = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
-    console.log("User from Firebase query:", user);
+ 
 
     if (user.length > 0) {
         data.role = user[0].role;
         await updateDoc(doc(firestore, "users", user[0].id), data);
-        console.log("Existing user updated:", data);
+      
         return { status: true, data: data };
     } else {
         data.role = "member";
         await addDoc(collection(firestore, "users"), data);
-        console.log("New user added:", data);
+  
         return { status: true, data: data };
     }
 }
