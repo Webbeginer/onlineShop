@@ -1,4 +1,4 @@
-export default function Loading() {
+const Loading = ()=> {
     return (
         <div className="w-full h-screen flex justify-center items-center mt-[110px]">
         <div className="flex flex-wrap gap-4 justify-center">
@@ -168,3 +168,4 @@ export default function Loading() {
     </div>
     )
 }
+export default Loading
