@@ -23,36 +23,37 @@ const ModalDetailProductPage = () => {
   if (error) return <div>Failed to load</div>;
 
   // Loading state
-  if (isLoading || !data) return <LoadingDetail/>;
+  if (isLoading || !data) return <LoadingDetail />;
 
   // Fallback untuk data produk jika tidak tersedia
 
-  const product = data.data;
+  const product = data?.data;
 
   return (
     <ModalLayout>
       <div
-        className="w-[400px] h-[550px] max-w-sm bg-transparent border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        className="w-[400px] h-[550px] max-w-sm bg-transparent  shadow dark:bg-gray-800 dark:border-gray-700"
         key={product.id}
       >
-        <div className="w-[370px] h-[300px] mx-auto mt-4 rounded-lg group overflow-hidden">
+        <div className="w-[370px] h-[300px] mx-auto mt-4 rounded-lg">
+
           <Image
-            className="p-8 object-cover group-hover:scale-110 transition duration-500 ease-in-out group-hover:rotate-3 object-cover h-full w-full"
-            src={product.image || "/placeholder.png"} // Placeholder jika gambar tidak tersedia
+            className="p-4 h-full w-full"
+            src={product?.image || "/placeholder.png"} // Placeholder jika gambar tidak tersedia
             width={250}
             height={250}
-            alt={product.title || "Product image"}
+            alt={product?.title || "Product image"}
           />
         </div>
 
         <div className="px-5 pb-5">
           <h3 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white ml-[20px]">
-            {product.name || "Unknown Product"}
+            {product?.name || "Unknown Product"}
           </h3>
 
           <div className="flex items-center ml-[10px] mt-2.5 mb-2">
             <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
-              Rate: {product.rating?.rate || "No Rating"}
+              Rate: {product?.rating?.rate || "No Rating"}
             </span>
           </div>
 
@@ -63,7 +64,7 @@ const ModalDetailProductPage = () => {
             <div className="flex items-center justify-between w-full">
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {product.price
-                  ? product.price.toLocaleString("id-ID", {
+                  ? product?.price.toLocaleString("id-ID", {
                       style: "currency",
                       currency: "IDR",
                     })
