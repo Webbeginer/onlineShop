@@ -7,12 +7,13 @@ import Loading from "./loading";
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const ProductPage = () => {
-  const { data, error } = useSWR('http://localhost:3000/api/product', fetcher );
+  const apiUrl = process.env.NEXT_PUBLIC_API;
+  const { data, isLoading } = useSWR(`${apiUrl}/api/product`, fetcher );
 
-  if (error) return <div>Failed to load</div>;
+  
   
   // Pastikan data ada sebelum diproses lebih lanjut
-  if (!data) return <Loading /> ; // Tampilkan loading jika data masih belum ada
+  if (isLoading) return <Loading />; // Tampilkan loading jika data masih belum ada
   const products = {
     data: data.data || [], // Pastikan data ada atau gunakan array kosong jika data undefined
   };
