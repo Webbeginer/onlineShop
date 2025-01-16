@@ -14,13 +14,11 @@ const ModalDetailProductPage = () => {
   const apiUrl = process.env.NEXT_PUBLIC_API;
 
   // Gunakan useSWR untuk mengambil data produk berdasarkan ID
-  const { data, error, isLoading } = useSWR(
+  const { data, isLoading } = useSWR(
     `${apiUrl}/api/product?id=${params?.id}`,
     fetcher
   );
 
-  // Error handling
-  if (error) return <div>Failed to load</div>;
 
   // Loading state
   if (isLoading || !data) return <LoadingDetail />;
